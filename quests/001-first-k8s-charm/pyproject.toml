@@ -1,0 +1,11 @@
+[project]
+name = "quest001"
+version = "1"
+dependencies = [
+    "requests",
+]
+
+[tool.ruff]
+exclude = [
+    "out",
+]

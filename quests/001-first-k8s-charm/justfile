@@ -1,0 +1,30 @@
+_default:
+  @just --list --unsorted
+
+# Run the quest
+run: _test
+
+# Lint and format code
+ruff:
+  ruff check --preview
+  ruff format --preview
+
+[working-directory: "out"]
+_test: _run
+  tox -e unit
+
+_run: _source
+  uv run run.py
+
+[working-directory: "out"]
+_source: _out
+  rm -rf canonical-operator
+  git clone git@github.com:dwilding/canonical-operator.git
+  cd canonical-operator && git checkout refresh-k8s-tutorial
+  cp -r canonical-operator/examples/k8s-1-minimal/* .
+  rm src/charm.py  # Will be generated during the run.
+  cp -r canonical-operator/docs/tutorial/from-zero-to-hero-write-your-first-kubernetes-charm/create-a-minimal-kubernetes-charm.md doc-original.md
+  rm -rf canonical-operator
+
+_out:
+  mkdir -p out
