@@ -1,2 +1,3 @@
-# charming-quests
-Automated tests of charming docs
+# Charming quests
+
+Experimental work in progress
