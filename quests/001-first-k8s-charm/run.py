@@ -6,7 +6,6 @@ import os
 
 import requests
 
-
 QUEST_DIR = Path(__file__).parent
 OUT_DIR = QUEST_DIR / "out"
 
