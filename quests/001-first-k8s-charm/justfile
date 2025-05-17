@@ -10,11 +10,12 @@ ruff:
   ruff format --preview
 
 [working-directory: "out"]
-_test: _run
+_test: _generate
   tox -e unit
 
-_run: _source
-  uv run run.py
+_generate: _source
+  @echo "Generating output…"
+  uv run generate.py
 
 [working-directory: "out"]
 _source: _out
